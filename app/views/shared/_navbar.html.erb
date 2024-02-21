@@ -1,5 +1,7 @@
 <div class="navbar bg-neutral text-neutral-content w-100 mx-auto shadow-xl flex justify-between top-0">
-  <button class="btn btn-ghost text-xl">feast</button>
+  <button class="btn btn-ghost text-xl">
+  <img class="logo w-10 h-10" alt="Logo" src="<%= image_path('yolk.png') %>"/>
+  </button>
   <% if user_signed_in? %>
     <div class="flex-none gap-2">
       <div class="form-control">
