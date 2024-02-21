@@ -20,3 +20,7 @@
 .tab-content.active {
   display: block; /* Only show the active tab content */
 }
+
+img.logo{
+  size: 50px;
+}
