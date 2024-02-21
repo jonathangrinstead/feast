@@ -16,7 +16,9 @@ export default class extends Controller {
 
     this.element.querySelectorAll('.tab').forEach((tab) => {
       tab.classList.remove('tab-active');
+      tab.classList.remove('shadow');
     });
     event.currentTarget.classList.add('tab-active');
+    event.currentTarget.classList.add('shadow');
   }
 }
