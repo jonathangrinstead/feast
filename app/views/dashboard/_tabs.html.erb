@@ -1,7 +1,16 @@
-<div role="tablist" class="tabs tabs-boxed fixed inset-x-0 bottom-0 m-6">
-  <a role="tab" class="tab p-8 tab-active"><i class="fa-solid fa-house fa-xl" style="color: #000000;"></i></a>
-  <a role="tab" class="tab p-8"><i class="fa-solid fa-wand-magic-sparkles fa-xl" style="color: #000000;"></i></a>
-  <a role="tab" class="tab p-8"><i class="fa-solid fa-plus fa-xl" style="color: #000000;"></i></a>
-  <a role="tab" class="tab p-8"><i class="fa-solid fa-book fa-xl" style="color: #000000;"></i></a>
-  <a role="tab" class="tab p-8"><i class="fa-solid fa-list fa-xl" style="color: #000000;"></i></a>
+<div data-controller="tabs">
+  <div role="tablist" class="tabs tabs-boxed fixed inset-x-0 bottom-0 m-6 shadow-xl">
+    <a href="#" role="tab" class="tab p-8 tab-active" data-action="tabs#changeTab" data-tab-target="#home"><i class="fa-solid fa-house fa-xl" style="color: #000000;"></i></a>
+    <a href="#" role="tab" class="tab p-8" data-action="tabs#changeTab" data-tab-target="#magic"><i class="fa-solid fa-wand-magic-sparkles fa-xl" style="color: #000000;"></i></a>
+    <a href="#" role="tab" class="tab p-8" data-action="tabs#changeTab" data-tab-target="#plus"><i class="fa-solid fa-plus fa-2xl" style="color: #000000;"></i></a>
+    <a href="#" role="tab" class="tab p-8" data-action="tabs#changeTab" data-tab-target="#book"><i class="fa-solid fa-book fa-xl" style="color: #000000;"></i></a>
+    <a href="#" role="tab" class="tab p-8" data-action="tabs#changeTab" data-tab-target="#list"><i class="fa-solid fa-list fa-xl" style="color: #000000;"></i></a>
+  </div>
+
+  <!-- Tab contents -->
+  <div id="home" class="tab-content active" data-tabs-target="panel"><%= render "feed" %></div>
+  <div id="magic" class="tab-content" data-tabs-target="panel"><%= render "inspire" %></div>
+  <div id="plus" class="tab-content" data-tabs-target="panel"><%= render "create" %></div>
+  <div id="book" class="tab-content" data-tabs-target="panel"><%= render "cookbook" %></div>
+  <div id="list" class="tab-content" data-tabs-target="panel"><%= render "list" %></div>
 </div>

@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+.tab-content {
+  display: none; /* Hide by default */
+}
+
+.tab-content.active {
+  display: block; /* Only show the active tab content */
+}
