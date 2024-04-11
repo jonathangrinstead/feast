@@ -7,6 +7,11 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
+        <%= f.label :photo %><br />
+        <%= f.file_field :photo, class:"file-input file-input-bordered w-full max-w-xs mt-2 mb-4"%>
+      </div>
+
+      <div class="field">
         <%= f.label :username %><br />
         <%= f.text_field :username, autofocus: true, class: "input input-bordered input-primary w-full max-w-xs mt-2 mb-4" %>
       </div>
