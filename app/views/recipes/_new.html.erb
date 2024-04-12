@@ -1,56 +1,61 @@
-<%= form_with(model: @recipe, local: true) do |form| %>
+<div class="text-center overflow-auto">
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :recipe_name %>
-  </div>
+  <h1 class="mt-8 font-extrabold text-2xl">Create your recipe !</h1>
 
-  <div class="field">
-    <%= form.label :photo %><br />
-    <%= form.file_field :photo, class:"file-input file-input-bordered w-full max-w-xs mt-2 mb-4"%>
-  </div>
+  <%= form_with(model: @recipe, local: true) do |form| %>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :recipe_description %>
-  </div>
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :recipe_name, class: "input input-bordered input-primary w-full max-w-xs mt-4 mb-4" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :shareable %>
-    <%= form.check_box :shareable, id: :recipe_shareable %>
-  </div>
+    <div class="field">
+      <%= form.label :photo %><br />
+      <%= form.file_field :photo, class:"file-input file-input-bordered w-full max-w-xs mt-2 mb-4 ml-14" %>
+    </div>
 
-  <h3>Ingredients</h3>
-  <div id="ingredients">
-    <%= form.fields_for :ingredients do |ingredient_form| %>
-      <div class="field">
-        <%= ingredient_form.label :name %>
-        <%= ingredient_form.text_field :name %>
-      </div>
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_area :description, id: :recipe_description, class: "input input-bordered input-primary w-full max-w-xs mt-4 mb-4" %>
+    </div>
 
-      <div class="field">
-        <%= ingredient_form.label :quantity %>
-        <%= ingredient_form.text_field :quantity %>
-      </div>
-    <% end %>
-  </div>
+    <div class="field">
+      <%= form.label :shareable %>
+      <%= form.check_box :shareable, id: :recipe_shareable, class: "checkbox checkbox-accent mb-4" %>
+    </div>
 
-  <h3>Instructions</h3>
-  <div id="instructions">
-    <%= form.fields_for :instructions do |instruction_form| %>
-      <div class="field">
-        <%= instruction_form.label :step_number %>
-        <%= instruction_form.number_field :step_number %>
-      </div>
+    <h3 class="mt-8 font-extrabold text-xl"> Ingredients</h3>
+    <div id="ingredients">
+      <%= form.fields_for :ingredients do |ingredient_form| %>
+        <div class="field">
+          <%= ingredient_form.label :name %>
+          <%= ingredient_form.text_field :name, class: "input input-bordered input-primary w-full max-w-xs mt-4 mb-4" %>
+        </div>
 
-      <div class="field">
-        <%= instruction_form.label :description %>
-        <%= instruction_form.text_area :description %>
-      </div>
-    <% end %>
-  </div>
+        <div class="field">
+          <%= ingredient_form.label :quantity %>
+          <%= ingredient_form.text_field :quantity, class: "input input-bordered input-primary w-full max-w-xs mt-4 mb-4" %>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+    <h3 class="mt-8 font-extrabold text-xl">Instructions</h3>
+    <div id="instructions">
+      <%= form.fields_for :instructions do |instruction_form| %>
+        <div class="field">
+          <%= instruction_form.label :step_number %>
+          <%= instruction_form.number_field :step_number %>
+        </div>
+
+        <div class="field">
+          <%= instruction_form.label :description %>
+          <%= instruction_form.text_area :description, class: "input input-bordered input-primary w-full max-w-xs mt-4 mb-4" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
