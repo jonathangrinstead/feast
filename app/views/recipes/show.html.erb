@@ -1,16 +1,26 @@
-<h1 class="text-xl"><%= @recipe.name %></h1>
-<%= @recipe.description %>
-<%= cl_image_tag @recipe.photo.key, class:'w-80'%>
-<h2>Ingredients</h2>
-<ul>
-  <% @recipe.ingredients.each do |ingredient| %>
-    <li><%= ingredient.name %> - <%= ingredient.quantity %></li>
-  <% end %>
-</ul>
+<div class="container p-12">
 
-<h2>Instructions</h2>
-<ol>
-  <% @recipe.instructions.each do |instruction| %>
-    <li><%= instruction.step_number %>: <%= instruction.description %></li>
-  <% end %>
-</ol>
+  <div class='m-8'>
+    <%= link_to home_path, class: "btn btn-neutral" do %>
+      <i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i>
+    <% end %>
+  </div>
+
+  <h1 class="text-xl"><%= @recipe.name %></h1>
+  <%= @recipe.description %>
+  <%= cl_image_tag @recipe.photo.key, class:'w-80'%>
+  <h2>Ingredients</h2>
+  <ul>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <li><%= ingredient.name %> - <%= ingredient.quantity %></li>
+    <% end %>
+  </ul>
+
+  <h2>Instructions</h2>
+  <ol>
+    <% @recipe.instructions.each do |instruction| %>
+      <li><%= instruction.step_number %>: <%= instruction.description %></li>
+    <% end %>
+  </ol>
+
+</div>
