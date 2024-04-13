@@ -8,5 +8,5 @@ class Recipe < ApplicationRecord
 
   has_one_attached :photo
 
-  scope :published, -> { where(is_published: true) }
+  scope :shared, -> { where(is_shareable: true) }
 end

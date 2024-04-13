@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#home"
   get "dashboard/home", to: 'dashboard#home', as: 'home'
+  get "recipes/shared", to: 'recipes#shared'
   resources :recipes do
     resources :ingredients, only: [:create, :update, :destroy], shallow: true
     resources :instructions, only: [:create, :update, :destroy], shallow: true
