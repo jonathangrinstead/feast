@@ -21,7 +21,7 @@
 
     <div class="field">
       <%= form.label :shareable %>
-      <%= form.check_box :shareable, id: :recipe_shareable, class: "checkbox checkbox-accent mb-4" %>
+      <%= form.check_box :is_shareable, id: :recipe_shareable, class: "checkbox checkbox-accent mb-4" %>
     </div>
 
     <h3 class="mt-8 font-extrabold text-xl"> Ingredients</h3>
@@ -54,7 +54,7 @@
       <% end %>
     </div>
 
-    <div class="actions">
+    <div class="actions btn btn-primary">
       <%= form.submit %>
     </div>
   <% end %>
