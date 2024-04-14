@@ -1,0 +1,15 @@
+<div class="columns-1">
+  <% @recipe.each do |recipe| %>
+    <div class="card w-96 bg-base-100 shadow-xl mb-6">
+      <figure><%= cl_image_tag recipe.photo.key %></figure>
+      <div class="card-body">
+        <h2 class="card-title"><%= recipe.name %></h2>
+        <p><%= recipe.description %></p>
+        <div class="card-actions justify-between mt-2">
+          <button class="btn btn-outline btn-success"><i class="fa-regular fa-bookmark fa-lg" style="color: #000000;"></i></button>
+          <button class="btn btn-outline btn-error"><i class="fa-regular fa-heart fa-lg" style="color: #000000;"></i></button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
