@@ -1,0 +1,15 @@
+
+  <div data-controller="ai-form">
+    <%= form_with url: ai_create_path, local: false do |form| %>
+      <div data-ai-form-target="ingredientField">
+        <label for="ingredient_0">Ingredient 1</label>
+        <input type="text" name="ingredients[0]" id="ingredient_0" placeholder="Enter an ingredient" class= "input input-bordered input-primary w-full max-w-xs mt-4 mb-4">
+      </div>
+    <div data-ai-form-target="output">
+    </div>
+    <div class="mb-4 mt-4">
+      <button type="button" data-action="ai-form#addIngredient" class="btn btn-neutral">Add More Ingredients</button>
+      <button type="button" data-action="ai-form#submitForm" class="btn btn-primary">Get Recipes</button>
+    </div>
+    <% end %>
+  </div>
