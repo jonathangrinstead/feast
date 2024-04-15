@@ -76,3 +76,5 @@ gem "devise"
 gem "cloudinary"
 
 gem 'simple_form'
+
+gem 'webpacker'
