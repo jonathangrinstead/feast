@@ -1,4 +1,4 @@
-<div class="text-center overflow-auto">
+<div class="text-center overflow-auto" data-controller="dynamic-fields">
 
   <h1 class="mt-8 font-extrabold text-2xl">Create your recipe !</h1>
 
@@ -26,6 +26,7 @@
 
     <h3 class="mt-8 font-extrabold text-xl"> Ingredients</h3>
     <div id="ingredients">
+
       <%= form.fields_for :ingredients do |ingredient_form| %>
         <div class="field">
           <%= ingredient_form.label :name %>
@@ -37,25 +38,52 @@
           <%= ingredient_form.text_field :quantity, class: "input input-bordered input-primary w-full max-w-xs mt-4 mb-4" %>
         </div>
       <% end %>
+
+      <template data-target="dynamic-fields.template" data-type="ingredient">
+        <div class="field">
+          <%= form.label :name, "Name" %>
+          <%= form.text_field :name, name: 'recipe[ingredients_attributes][NEW_RECORD][name]', id: nil, class: "input input-bordered input-primary w-full max-w-xs mt-4 mb-4" %>
+        </div>
+        <div class="field">
+          <%= form.label :quantity, "Quantity" %>
+          <%= form.text_field :quantity, name: 'recipe[ingredients_attributes][NEW_RECORD][quantity]', id: nil, class: "input input-bordered input-primary w-full max-w-xs mt-4 mb-4" %>
+        </div>
+      </template>
+
     </div>
+
+    <button type="button" data-action="click->dynamic-fields#addIngredient" class="btn btn-neutral">Add Ingredient</button>
 
     <h3 class="mt-8 font-extrabold text-xl">Instructions</h3>
     <div id="instructions">
       <%= form.fields_for :instructions do |instruction_form| %>
-        <div class="field">
+        <div class="field" data-target="dynamic-fields.instruction">
           <%= instruction_form.label :step_number %>
-          <%= instruction_form.number_field :step_number %>
+          <%= instruction_form.number_field :step_number, value: 1, disabled: true %>
         </div>
-
         <div class="field">
           <%= instruction_form.label :description %>
           <%= instruction_form.text_area :description, class: "input input-bordered input-primary w-full max-w-xs mt-4 mb-4" %>
         </div>
       <% end %>
+
+      <template data-target="dynamic-fields.template" data-type="instruction">
+        <div class="field" data-target="dynamic-fields.instruction">
+          <%= form.label :step_number, "Step Number" %>
+          <%= form.number_field :step_number, name: 'recipe[instructions_attributes][NEW_RECORD][step_number]', value: 'STEP_NUMBER', id: nil, disabled: true %>
+        </div>
+        <div class="field">
+          <%= form.label :description, "Description" %>
+          <%= form.text_area :description, name: 'recipe[instructions_attributes][NEW_RECORD][description]', id: nil, class: "input input-bordered input-primary w-full max-w-xs mt-4 mb-4" %>
+        </div>
+      </template>
     </div>
 
-    <div class="actions btn btn-primary">
-      <%= form.submit %>
-    </div>
+      <button type="button" data-action="click->dynamic-fields#addInstruction" class="btn btn-neutral mb-8">Add Instruction</button>
+
+      <div class="actions btn btn-primary mt-8 mb-8">
+        <%= form.submit %>
+      </div>
+
   <% end %>
 </div>
