@@ -1,24 +1,23 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["ingredientField", "output"]
+  static targets = ["form", "output"]
 
   connect() {
     console.log("AI form controller connected!");
   }
 
   addIngredient() {
-    const ingredientIndex = this.ingredientFieldTargets.length;
+    const ingredientIndex = this.formTarget.querySelectorAll('input').length;
     const newField = document.createElement("div");
     newField.innerHTML = `<label for="ingredient_${ingredientIndex}">Ingredient ${ingredientIndex + 1}</label>
-                          <input type="text" name="ingredients[${ingredientIndex}]" id="ingredient_${ingredientIndex}" placeholder="Enter an ingredient" class= "input input-bordered input-primary w-full max-w-xs mt-4 mb-8"> `;
-    this.element.appendChild(newField);
+                          <input type="text" name="ingredients[${ingredientIndex}]" id="ingredient_${ingredientIndex}" placeholder="Enter an ingredient" class="input input-bordered input-primary w-full max-w-xs mt-4 mb-8">`;
+    this.formTarget.appendChild(newField);  // Append directly to the form target
   }
 
   submitForm(event) {
     event.preventDefault();
-    const form = this.element.querySelector('form');
-    const formData = new FormData(form);
+    const formData = new FormData(this.formTarget);
 
     fetch('/ai/create', {
       method: 'POST',
@@ -26,7 +25,7 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then(data => {
-      this.outputTarget.innerHTML = data.recipes;
+      this.outputTarget.innerHTML = data.recipes.join("<br>");
     })
     .catch(error => {
       console.error('Error fetching recipes:', error);
