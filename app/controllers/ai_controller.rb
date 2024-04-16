@@ -2,7 +2,6 @@ class AiController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def create
-    # Assuming you receive ingredients as an array of names
     ingredients = params[:ingredients].values
     recipe_ideas = generate_recipe_ideas(ingredients)
 
