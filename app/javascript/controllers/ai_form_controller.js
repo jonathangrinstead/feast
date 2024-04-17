@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["form", "output"]
+  static targets = ["form", "output", "spinner", "disappear"]
 
   connect() {
     console.log("AI form controller connected!");
@@ -18,6 +18,9 @@ export default class extends Controller {
   submitForm(event) {
     event.preventDefault();
     const formData = new FormData(this.formTarget);
+    this.spinnerTarget.style.display = 'block';
+    this.disappearTarget.style.display = 'none';
+    this.formTarget.style.display = 'none';
 
     fetch('/ai/create', {
       method: 'POST',
@@ -25,7 +28,34 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then(data => {
-      this.outputTarget.innerHTML = data.recipes
+      console.log(data.recipes)
+      this.spinnerTarget.style.display = 'none';
+      const recipePattern = /Title:\s*(.*?)\s*\/\/\s*Ingredients:\s*(.*?)\s*\/\/\s*Instructions:\s*(.*)/s;
+      const matches = data.recipes.match(recipePattern);
+
+      let title = "Not Available";
+      let ingredients = "No ingredients listed.";
+      let instructions = "No instructions available.";
+
+      if (matches) {
+        title = matches[1];
+        ingredients = matches[2];
+        instructions = matches[3];
+
+        console.log(`Title: ${title}`);
+        console.log(`Ingredients: ${ingredients}`);
+        console.log(`Instructions: ${instructions}`);
+      } else {
+        console.log("Failed to parse the recipe string.");
+      }
+
+      this.outputTarget.innerHTML = `<div class="card w-96 bg-base-100 shadow-xl">
+                                        <div class="card-body">
+                                          <h2 class="card-title">${title}</h2>
+                                          <p>${ingredients}</p>
+                                          <p>${instructions}</p>
+                                        </div>
+                                      </div>`;
     })
     .catch(error => {
       console.error('Error fetching recipes:', error);
