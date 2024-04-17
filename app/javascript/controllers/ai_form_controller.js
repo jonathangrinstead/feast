@@ -25,7 +25,7 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then(data => {
-      this.outputTarget.innerHTML = data.recipes.join("<br>");
+      this.outputTarget.innerHTML = data.recipes
     })
     .catch(error => {
       console.error('Error fetching recipes:', error);
