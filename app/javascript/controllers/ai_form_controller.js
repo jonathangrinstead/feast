@@ -12,7 +12,7 @@ export default class extends Controller {
     const newField = document.createElement("div");
     newField.innerHTML = `<label for="ingredient_${ingredientIndex}">Ingredient ${ingredientIndex + 1}</label>
                           <input type="text" name="ingredients[${ingredientIndex}]" id="ingredient_${ingredientIndex}" placeholder="Enter an ingredient" class="input input-bordered input-primary w-full max-w-xs mt-4 mb-8">`;
-    this.formTarget.appendChild(newField);  // Append directly to the form target
+    this.formTarget.appendChild(newField);
   }
 
   submitForm(event) {
@@ -41,10 +41,6 @@ export default class extends Controller {
         title = matches[1];
         ingredients = matches[2];
         instructions = matches[3];
-
-        console.log(`Title: ${title}`);
-        console.log(`Ingredients: ${ingredients}`);
-        console.log(`Instructions: ${instructions}`);
       } else {
         console.log("Failed to parse the recipe string.");
       }
@@ -52,7 +48,9 @@ export default class extends Controller {
       this.outputTarget.innerHTML = `<div class="card w-96 bg-base-100 shadow-xl">
                                         <div class="card-body">
                                           <h2 class="card-title">${title}</h2>
-                                          <p>${ingredients}</p>
+                                          <h4 class="font-bold">Ingredients:</h4>
+                                          <p> ${ingredients}</p>
+                                          <h4 class="font-bold">Instructions:</h4>
                                           <p>${instructions}</p>
                                         </div>
                                       </div>`;
