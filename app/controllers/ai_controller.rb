@@ -13,7 +13,9 @@ class AiController < ApplicationController
 
   def generate_recipe_ideas(ingredients)
     api_key = ENV['CHAT_GPT_API_KEY']
-    prompt = "Create a recipe with the following ingredients: #{ingredients}. Please provide a detailed recipe."
+    prompt = "Create a recipe with the following ingredients: #{ingredients}. Please provide a detailed recipe.
+    Format the response as follows: 'Title: [Recipe Title] // Ingredients: [List] // Instructions: [Detailed Steps]'.
+    Use double slashes '//' as section separators."
     headers = {
       "Authorization" => "Bearer #{api_key}",
       "Content-Type" => "application/json"
