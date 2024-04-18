@@ -28,10 +28,9 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data.recipes)
       this.spinnerTarget.style.display = 'none';
       const recipePattern = /Title:\s*(.*?)\s*\/\/\s*Ingredients:\s*(.*?)\s*\/\/\s*Instructions:\s*(.*)/s;
-      const matches = data.recipes.match(recipePattern);
+      const matches = data.content.match(recipePattern);
 
       let title = "Not Available";
       let ingredients = "No ingredients listed.";
@@ -57,6 +56,7 @@ export default class extends Controller {
       }
 
       this.outputTarget.innerHTML = `<div class="card w-96 bg-base-100 shadow-xl">
+                                      <figure><img src="${data.image_url}" alt="${title}" /></figure>
                                         <div class="card-body">
                                           <h2 class="card-title">${title}</h2>
                                           <h4 class="font-bold">Ingredients:</h4>

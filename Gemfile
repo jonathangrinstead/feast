@@ -82,3 +82,5 @@ gem 'webpacker'
 gem 'httparty'
 
 gem "ruby-openai"
+
+gem 'gon'
