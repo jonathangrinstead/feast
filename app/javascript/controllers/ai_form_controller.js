@@ -41,6 +41,17 @@ export default class extends Controller {
         title = matches[1];
         ingredients = matches[2];
         instructions = matches[3];
+
+        const steps = instructions.split(/(?=\d+\.)/).filter(Boolean);
+        const ol = document.createElement('ol');
+        steps.forEach(step => {
+            const li = document.createElement('li');
+            li.textContent = step.trim();
+            ol.appendChild(li);
+        })
+        const instructionContainer = document.createElement('div');
+        instructionContainer.appendChild(ol);
+        instructions = instructionContainer.innerHTML;
       } else {
         console.log("Failed to parse the recipe string.");
       }
