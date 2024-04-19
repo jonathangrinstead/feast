@@ -9,4 +9,5 @@ class Recipe < ApplicationRecord
   has_one_attached :photo
 
   scope :shared, -> { where(is_shareable: true) }
+  scope :most_recent, -> { order(created_at: :desc) }
 end
