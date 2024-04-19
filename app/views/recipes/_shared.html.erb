@@ -1,5 +1,5 @@
 <div class="columns-1">
-  <% @recipe.each do |recipe| %>
+  <% @recipes.each do |recipe| %>
     <div class="card w-96 bg-base-100 shadow-xl mb-6">
       <figure><%= cl_image_tag recipe.photo.key %></figure>
       <div class="card-body">
