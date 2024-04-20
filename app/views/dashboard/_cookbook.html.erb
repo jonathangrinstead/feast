@@ -1,1 +1,13 @@
-<h1>Cookbook will go here</h1>
+<div class="overflow-auto mb-20 mt-8 p-12">
+  <h1 class="mb-8 font-bold">Your Recipes: </h1>
+    <% @user_recipes.each do |recipe| %>
+      <div class="col-2">
+        <div class="card bg-base-100 shadow-xl mb-6">
+          <div class="card-body">
+            <h2 class="card-title"><%= recipe.name %></h2>
+            <p><%= recipe.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>
