@@ -1,13 +1,18 @@
 <div class="columns-1">
   <% @recipes.each do |recipe| %>
     <div class="card w-96 bg-base-100 shadow-xl mb-6">
-      <figure><%= cl_image_tag recipe.photo.key %></figure>
+      <figure class='h-96'><%= cl_image_tag recipe.photo.key %></figure>
       <div class="card-body">
+        <div class='flex justify-between'>
+            <h4>100 Likes</h4>
+            <h4>@<%= recipe.user.username %></h4>
+        </div>
+          <div class="divider divider-primary mt-0 mb-0"></div>
         <h2 class="card-title"><%= recipe.name %></h2>
         <p><%= recipe.description %></p>
         <div class="card-actions justify-between mt-2">
-          <button class="btn btn-outline btn-success"><i class="fa-regular fa-bookmark fa-lg" style="color: #000000;"></i></button>
-          <button class="btn btn-outline btn-error"><i class="fa-regular fa-heart fa-lg" style="color: #000000;"></i></button>
+          <button class="btn btn-outline btn-accent w-12 h-12"><i class="fa-regular fa-bookmark fa-lg" style="color: #000000;"></i></button>
+          <button class="btn btn-outline btn-primary w-12 h-12"><i class="fa-regular fa-heart fa-lg" style="color: #000000;"></i></button>
         </div>
       </div>
     </div>
