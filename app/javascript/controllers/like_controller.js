@@ -34,9 +34,13 @@ export default class extends Controller {
 
   updateButton() {
     if (this.likedValue) {
-      this.element.textContent = "Unlike";
+      this.element.innerHTML = `<i class="fa-solid fa-heart fa-xl" style="color: #000000;"></i>`;
+      this.element.classList.remove('btn-outline')
+      this.element.classList.add('btn-active')
     } else {
-      this.element.textContent = "Like";
+      this.element.innerHTML = `<i class="fa-regular fa-heart fa-xl" style="color: #000000;"></i>`;
+      this.element.classList.add('btn-outline')
+      this.element.classList.remove('btn-active')
     }
   }
 }
