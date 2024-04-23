@@ -6,4 +6,6 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   has_one_attached :photo
   has_many :recipes
+  has_many :likes
+  has_many :liked_recipes, through: :likes, source: :recipe
 end

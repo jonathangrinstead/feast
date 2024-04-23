@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :ingredients, only: [:create, :update, :destroy], shallow: true
     resources :instructions, only: [:create, :update, :destroy], shallow: true
+    resources :likes, only: [:create, :destroy]
   end
 end
