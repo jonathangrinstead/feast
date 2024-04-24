@@ -1,16 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="like"
+// Connects to data-controller="bookmark"
 export default class extends Controller {
-  static values = { recipeId: Number, liked: Boolean, likeId: Number }
-
+  static values = {recipeId: Number, bookmarkId: Number, bookmarked: Boolean}
   connect() {
+    console.log(`bookmark controller connected ${this.recipeIdValue}`)
+    console.log(`${this.bookmarkIdValue} && ${this.bookmarkedValue}`)
     this.updateButton();
   }
-
-  toggleLike() {
-    const url = this.likedValue ? `/recipes/${this.recipeIdValue}/likes/${this.likeIdValue}` : `/recipes/${this.recipeIdValue}/likes`;
-    const method = this.likedValue ? 'DELETE' : 'POST';
+  toggleBookmark() {
+    const url = this.bookmarkedValue ? `/recipes/${this.recipeIdValue}/bookmarks/${this.bookmarkIdValue}` : `/recipes/${this.recipeIdValue}/bookmarks`;
+    const method = this.bookmarkedValue ? 'DELETE' : 'POST';
 
     fetch(url, {
       method: method,
@@ -23,7 +23,7 @@ export default class extends Controller {
     })
     .then(response => {
       if (response.ok) {
-        this.likedValue = !this.likedValue;
+        this.bookmarkedValue = !this.bookmarkedValue;
         this.updateButton();
       }
     })
@@ -31,12 +31,12 @@ export default class extends Controller {
   }
 
   updateButton() {
-    if (this.likedValue) {
-      this.element.innerHTML = `<i class="fa-solid fa-heart fa-xl" style="color: #000000;"></i>`;
+    if (this.bookmarkedValue) {
+      this.element.innerHTML = `<i class="fa-solid fa-bookmark fa-xl" style="color: #000000;"></i>`;
       this.element.classList.remove('btn-outline')
       this.element.classList.add('btn-active')
     } else {
-      this.element.innerHTML = `<i class="fa-regular fa-heart fa-xl" style="color: #000000;"></i>`;
+      this.element.innerHTML = `<i class="fa-regular fa-bookmark fa-xl" style="color: #000000;"></i>`;
       this.element.classList.add('btn-outline')
       this.element.classList.remove('btn-active')
     }

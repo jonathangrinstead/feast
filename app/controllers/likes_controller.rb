@@ -19,5 +19,4 @@ class LikesController < ApplicationController
   def already_liked?
     Like.where(user: current_user, recipe: @recipe).exists?
   end
-
 end

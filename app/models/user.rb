@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :likes
   has_many :liked_recipes, through: :likes, source: :recipe
+  has_many :bookmarks
 end
