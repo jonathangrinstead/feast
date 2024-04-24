@@ -1,8 +1,8 @@
-<div class="columns-1">
+<div class="columns-1" >
   <% @recipes.each do |recipe| %>
-    <div class="card w-96 bg-base-100 shadow-xl mb-6">
+    <div class="card w-96 bg-base-100 shadow-xl mb-6" >
       <figure class='h-96'><%= cl_image_tag recipe.photo.key %></figure>
-      <div class="card-body">
+      <div class="card-body" >
         <div class='flex justify-between'>
             <h4><%= recipe.likes.count %> Likes</h4>
             <h4>@<%= recipe.user.username %></h4>
@@ -11,7 +11,14 @@
         <h2 class="card-title"><%= recipe.name %></h2>
         <p><%= recipe.description %></p>
         <div class="card-actions justify-between mt-2">
-          <button class="btn btn-outline btn-accent w-12 h-12"><i class="fa-regular fa-bookmark fa-lg" style="color: #000000;"></i></button>
+          <% bookmark_id = find_user_bookmark_id(current_user, recipe) %>
+          <button data-controller='bookmark'
+          data-bookmark-recipe-id-value="<%=recipe.id %>"
+          data-bookmark-bookmark-id-value="<%= bookmark_id %>"
+          data-bookmark-bookmarked-value="<%= current_user_bookmarks_recipe?(recipe) %>"
+          data-action="click->bookmark#toggleBookmark"
+          class="btn btn-outline btn-accent w-12 h-12"
+          ><i class="fa-regular fa-bookmark fa-lg" style="color: #000000;"></i></button>
           <% like_id = find_user_like_id(current_user, recipe) %>
           <button data-controller="like"
             data-like-recipe-id-value="<%= recipe.id %>"
@@ -22,6 +29,5 @@
         </div>
       </div>
     </div>
-
   <% end %>
 </div>
