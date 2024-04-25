@@ -1,1 +1,18 @@
-<h1>Shopping List will go here</h1>
+<div class="overflow-auto mb-20 mt-8 p-12 flex justify-center">
+    <div data-controller="shopping-list">
+      <form data-action="submit->shopping-list#add">
+
+        <input type="text" data-shopping-list-target="input" placeholder="Add new item"
+        class="input input-bordered input-primary w-full max-w-xs mt-4 mb-8">
+
+        <button class="btn btn-primary" type="submit">Add Item</button>
+
+      </form>
+
+      <div class="card bg-base-100 shadow-xl p-8 mt-8 text-center">
+        <h2 class="card-title"> Shopping List: </h2>
+        <ul data-shopping-list-target="items">
+        </ul>
+      </div>
+    </div>
+</div>
