@@ -4,8 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static values = {recipeId: Number, bookmarkId: Number, bookmarked: Boolean}
   connect() {
-    console.log(`bookmark controller connected ${this.recipeIdValue}`)
-    console.log(`${this.bookmarkIdValue} && ${this.bookmarkedValue}`)
     this.updateButton();
   }
   toggleBookmark() {
