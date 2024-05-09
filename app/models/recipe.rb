@@ -5,6 +5,7 @@ class Recipe < ApplicationRecord
   has_many :likes
   has_many :likers, through: :likes, source: :user
   has_many :bookmarks
+  has_many :comments
 
   accepts_nested_attributes_for :ingredients, allow_destroy: true
   accepts_nested_attributes_for :instructions, allow_destroy: true
