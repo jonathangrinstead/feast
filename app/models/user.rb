@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :likes
   has_many :liked_recipes, through: :likes, source: :recipe
   has_many :bookmarks
+  has_many :comments
 end

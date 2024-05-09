@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     resources :instructions, only: [:create, :update, :destroy], shallow: true
     resources :likes, only: [:create, :destroy]
     resources :bookmarks, only: [:create, :destroy]
+    resources :comments, only: [:new, :create]
   end
 end

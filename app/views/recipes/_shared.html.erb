@@ -1,3 +1,4 @@
+
 <div class="columns-1" >
   <% @recipes.each do |recipe| %>
     <div class="card w-96 bg-base-100 shadow-xl mb-6" >
@@ -27,6 +28,23 @@
             data-action="click->like#toggleLike" class="btn btn-outline btn-primary w-12 h-12">
           </button>
         </div>
+        <div class="comments-section">
+          <div class="columns-1">
+            <% recipe.comments.each do |comment| %>
+            <div class="card shadow-xl mb-2 p-2 text-center">
+              <%= comment.text%>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <%= form_for([recipe, recipe.comments.build], html: { class: "flex items-center space-x-2" }) do |f| %>
+          <div class="flex-grow">
+            <%= f.text_field :text, placeholder: "Write your comment here...", class: "input input-bordered input-primary w-full" %>
+          </div>
+          <%= f.button type: "submit", class: "btn btn-neutral flex items-center" do %>
+            <i class="fa-regular fa-paper-plane fa-lg" style="color: #000000;"></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
   <% end %>
