@@ -1,23 +1,31 @@
-<div data-controller="ai-form">
-  <form data-ai-form-target="form">
-    <div>
-      <label for="ingredient_0">Ingredient 1</label>
-      <input type="text" name="ingredients[0]" id="ingredient_0" placeholder="Enter an ingredient" class="input input-bordered input-primary w-full max-w-xs mt-4 mb-8">
+<div class='columns-1'>
+  <h1 class='text-2xl font-bold mt-8 mb-8'>Need some inspiration ?</h1>
+
+  <div data-controller="ai-form">
+    <form data-ai-form-target="form">
+      <div>
+        <label for="ingredient_0">Ingredient 1</label>
+        <input type="text" name="ingredients[0]" id="ingredient_0" placeholder="Enter an ingredient" class="input input-bordered input-primary w-full max-w-xs mt-4 mb-8">
+      </div>
+    </form>
+    <div data-ai-form-target="output"></div>
+    <div data-ai-form-target="disappear">
+      <div class='flex justify-center'>
+        <button type="button" data-action="ai-form#addIngredient" class="btn btn-neutral">Add Ingredient</button>
+      </div>
+      <div class='flex justify-center mt-8'>
+        <button type="button" data-action="ai-form#submitForm" class="btn btn-primary">Get Recipe</button>
+      </div>
     </div>
-  </form>
-  <div data-ai-form-target="output"></div>
-  <div data-ai-form-target="disappear">
-    <button type="button" data-action="ai-form#addIngredient" class="btn btn-neutral">Add More Ingredients</button>
-    <button type="button" data-action="ai-form#submitForm" class="btn btn-primary">Get Recipes</button>
+      <div id="loadingSpinners" data-ai-form-target="spinner" style="display: none;" class="mt-48 ml-8">
+        <span class="loading loading-spinner text-primary"></span>
+        <span class="loading loading-spinner text-secondary"></span>
+        <span class="loading loading-spinner text-accent"></span>
+        <span class="loading loading-spinner text-neutral"></span>
+        <span class="loading loading-spinner text-info"></span>
+        <span class="loading loading-spinner text-success"></span>
+        <span class="loading loading-spinner text-warning"></span>
+        <span class="loading loading-spinner text-error"></span>
+      </div>
   </div>
-    <div id="loadingSpinners" data-ai-form-target="spinner" style="display: none;" class="mt-24">
-      <span class="loading loading-spinner text-primary"></span>
-      <span class="loading loading-spinner text-secondary"></span>
-      <span class="loading loading-spinner text-accent"></span>
-      <span class="loading loading-spinner text-neutral"></span>
-      <span class="loading loading-spinner text-info"></span>
-      <span class="loading loading-spinner text-success"></span>
-      <span class="loading loading-spinner text-warning"></span>
-      <span class="loading loading-spinner text-error"></span>
-    </div>
 </div>
