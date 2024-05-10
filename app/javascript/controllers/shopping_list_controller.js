@@ -26,14 +26,18 @@ export default class extends Controller {
 
   createItem(text, completed = false) {
     const listItem = document.createElement("li")
+    listItem.classList.add("m-4");
     const checkbox = document.createElement("input")
     checkbox.type = "checkbox"
     checkbox.checked = completed;
     checkbox.onchange = this.toggleComplete.bind(this);
+    checkbox.classList.add("checkbox");
+    checkbox.classList.add("checkbox-primary");
 
     listItem.textContent = text;
     listItem.prepend(checkbox);
     listItem.style.textDecoration = completed ? 'line-through' : 'none';
+
     this.itemsTarget.appendChild(listItem);
   }
 
