@@ -8,12 +8,26 @@
 
   <div class="flex justify-center">
     <div class="card lg:card-side bg-base-100 shadow-xl">
-      <figure> <%= cl_image_tag @recipe.photo.key, class:'w-80'%></figure>
+      <figure> <%= cl_image_tag @recipe.photo.key, class:'w-80 h-96 object-cover'%></figure>
       <div class="card-body">
         <h2 class="card-title"><%= @recipe.name %></h2>
         <p><%= @recipe.description %></p>
-        <div class="card-actions justify-end">
-          <button class="btn btn-primary"><i class="fa-solid fa-bookmark" style="color: #000000;"></i></button>
+          <div class="card-actions justify-between mt-2">
+          <% bookmark_id = find_user_bookmark_id(current_user, @recipe) %>
+          <button data-controller='bookmark'
+          data-bookmark-recipe-id-value="<%= @recipe.id %>"
+          data-bookmark-bookmark-id-value="<%= bookmark_id %>"
+          data-bookmark-bookmarked-value="<%= current_user_bookmarks_recipe?(@recipe) %>"
+          data-action="click->bookmark#toggleBookmark"
+          class="btn btn-outline btn-accent w-12 h-12"
+          ><i class="fa-regular fa-bookmark fa-lg" style="color: #000000;"></i></button>
+          <% like_id = find_user_like_id(current_user, @recipe) %>
+          <button data-controller="like"
+            data-like-recipe-id-value="<%= @recipe.id %>"
+            data-like-like-id-value="<%= like_id %>"
+            data-like-liked-value="<%= current_user_likes_recipe?(@recipe) %>"
+            data-action="click->like#toggleLike" class="btn btn-outline btn-primary w-12 h-12">
+          </button>
         </div>
       </div>
     </div>
