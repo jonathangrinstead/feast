@@ -44,11 +44,22 @@
   <div class="flex justify-center mt-4">
     <div class="card bg-base-100 shadow-xl w-80 text-center p-4">
       <h2 class="card-title mb-4">Comments</h2>
-    <% @recipe.comments.each do |comment| %>
-      <div class="card shadow-xl mb-2 p-2 text-center">
-        <h6>@<%= comment.user.username %>: <%= comment.text%></h6>
-      </div>
-    <% end %>
+
+        <% @recipe.comments.each do |comment| %>
+          <div class="card shadow-xl mb-2 p-2 text-center">
+            <h6>@<%= comment.user.username %>: <%= comment.text%></h6>
+          </div>
+        <% end %>
+
+        <%= form_for([@recipe, @recipe.comments.build], html: { class: "flex items-center space-x-2 mt-4" }) do |f| %>
+          <div class="flex-grow">
+            <%= f.text_field :text, placeholder: "Write your comment here...", class: "input input-bordered input-primary w-full" %>
+          </div>
+          <%= f.button type: "submit", class: "btn btn-neutral flex items-center" do %>
+            <i class="fa-regular fa-paper-plane fa-lg" style="color: #000000;"></i>
+          <% end %>
+        <% end %>
+
     </div>
   </div>
 </div>
