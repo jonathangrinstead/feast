@@ -1,9 +1,11 @@
-<div class="navbar bg-neutral text-neutral-content w-100 mx-auto shadow-xl justify-between top-0 fixed z-50">
-  <div class="flex">
+<div class="navbar bg-neutral text-neutral-content w-100 mx-auto shadow-xl justify-between top-0 fixed z-50" data-controller="search-bar">
+  <div class="flex flex-grow">
     <% if user_signed_in? %>
       <div class="flex-none gap-2">
         <div class="form-control">
-          <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto shadow-xl mr-4" />
+          <input type="text" placeholder="Search" class="input input-bordered w-32 shadow-xl mr-4" 
+                  data-search-bar-target="input"
+                  data-action="click->search-bar#toggleSearch"/>
         </div>
       </div>
     <% end %>

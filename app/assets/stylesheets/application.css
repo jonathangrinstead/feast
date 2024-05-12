@@ -56,3 +56,8 @@ main {
   transform: translateX(-50%) scale(1);
   opacity: 1;
 }
+
+.w-64 {
+  width: 100%; 
+  transition: width 0.7s ease-in-out; 
+}
