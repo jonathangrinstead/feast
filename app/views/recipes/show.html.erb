@@ -35,6 +35,16 @@
 
   <div class="flex justify-center mt-4">
     <div class="card bg-base-100 shadow-xl w-80 text-center p-4">
+      <h2 class="card-title mb-4">Recipe by @<%= @recipe.user.username %></h2>
+      <div class="flex justify-between">
+        <h4><%= @recipe.likes.count %><i class="fa-regular fa-heart fa-lg ml-4" style="color: #000000;"></i></h4>
+        <h4><%= @recipe.bookmarks.count %><i class="fa-regular fa-bookmark fa-lg ml-4" style="color: #000000;"></i></h4>
+      </div>
+    </div> 
+  </div>
+
+  <div class="flex justify-center mt-4">
+    <div class="card bg-base-100 shadow-xl w-80 text-center p-4">
       <h2 class="card-title mb-4">Ingredients</h2>
       <ul>
         <% @recipe.ingredients.each do |ingredient| %>
