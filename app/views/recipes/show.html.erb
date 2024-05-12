@@ -1,6 +1,6 @@
 <div class="container p-12">
 
-  <div class='m-8'>
+  <div class="mb-4">
     <%= link_to home_path, class: "btn btn-lg btn-neutral", id: "back-to-home" do %>
       <i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i>
     <% end %>
@@ -19,18 +19,20 @@
     </div>
   </div>
 
-  <div class="flex justify-between-lg">
-    <div class="card w-96 bg-base-100 shadow-xl p-8 m-8">
-      <h2 class="card-title">Ingredients</h2>
+  <div class="flex justify-center mt-4">
+    <div class="card bg-base-100 shadow-xl w-80 text-center p-4">
+      <h2 class="card-title mb-4">Ingredients</h2>
       <ul>
         <% @recipe.ingredients.each do |ingredient| %>
           <li><%= ingredient.name %> - <%= ingredient.quantity %></li>
         <% end %>
       </ul>
     </div>
+  </div>
 
-    <div class="card w-96 bg-base-100 shadow-xl p-8 m-8">
-      <h2 class="card-title">How to cook</h2>
+  <div class="flex justify-center mt-4">
+    <div class="card bg-base-100 shadow-xl w-80 text-center p-4">
+      <h2 class="card-title mb-4">How to cook</h2>
       <ol>
         <% @recipe.instructions.each do |instruction| %>
           <li><%= instruction.step_number %>: <%= instruction.description %></li>
@@ -39,4 +41,14 @@
     </div>
   </div>
 
+  <div class="flex justify-center mt-4">
+    <div class="card bg-base-100 shadow-xl w-80 text-center p-4">
+      <h2 class="card-title mb-4">Comments</h2>
+    <% @recipe.comments.each do |comment| %>
+      <div class="card shadow-xl mb-2 p-2 text-center">
+        <h6>@<%= comment.user.username %>: <%= comment.text%></h6>
+      </div>
+    <% end %>
+    </div>
+  </div>
 </div>
