@@ -41,3 +41,18 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+.modal {
+  position: absolute;
+  top: 40px; /* Adjust based on your button's position */
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+  z-index: 1000;
+}
+
+.modal-open {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
