@@ -28,13 +28,25 @@
             data-action="click->like#toggleLike" class="btn btn-outline btn-primary w-12 h-12">
           </button>
         </div>
-        <div class="comments-section">
+
+        <div class="comments-section flex justify-center">
           <div class="columns-1">
-            <% recipe.comments.each do |comment| %>
-            <div class="card shadow-xl mb-2 p-2 text-center">
-              <h6>@<%= comment.user.username %>: <%= comment.text%></h6>
-            </div>
-            <% end %>
+              <div data-controller="modal">
+                <button class="btn" data-action="modal#toggle">See Comments</button>
+                <div id="my_modal_3" class="modal modal-open" data-modal-target="modal" style="display: none;">
+                  <div class="modal-box relative mt-32 ml-4">
+                    <button class="btn btn-sm btn-circle absolute right-2 top-2" data-action="modal#toggle">✕</button>
+                    <h3 class="font-bold text-lg">Comments</h3>
+                    <p class="py-4">
+                      <% recipe.comments.each do |comment| %>
+                        <div class="card shadow-xl mb-2 p-2 text-center">
+                          <h6>@<%= comment.user.username %>: <%= comment.text%></h6>
+                        </div>
+                      <% end %>
+                    </p>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
         <%= form_for([recipe, recipe.comments.build], html: { class: "flex items-center space-x-2" }) do |f| %>
@@ -49,3 +61,4 @@
     </div>
   <% end %>
 </div>
+
