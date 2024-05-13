@@ -24,6 +24,5 @@ class Recipe < ApplicationRecord
   associated_against: {
     user: :name
   },
-  using: :tsearch,
   scope: :shared
 end

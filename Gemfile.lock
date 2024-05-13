@@ -119,6 +119,8 @@ GEM
     error_highlight (0.6.0)
     erubi (1.12.0)
     event_stream_parser (1.0.0)
+    faker (3.3.1)
+      i18n (>= 1.8.11, < 2)
     faraday (2.9.0)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-follow_redirects (0.3.0)
@@ -321,6 +323,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   error_highlight (>= 0.4.0)
+  faker
   gon
   httparty
   importmap-rails
