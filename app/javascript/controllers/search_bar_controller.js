@@ -12,5 +12,6 @@ export default class extends Controller {
     const input = this.inputTarget;
     input.classList.toggle('w-32');
     input.classList.toggle('w-64');
+    input.placeholder = input.placeholder === '🔍 Search' ? 'Search' : '🔍 Search';
   }
 }
