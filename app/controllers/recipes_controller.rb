@@ -43,6 +43,11 @@ class RecipesController < ApplicationController
     redirect_to recipes_url, notice: 'Recipe was successfully destroyed.'
   end
 
+  def search
+    @recipes = Recipe.where('name ILIKE ?', "%#{params[:query]}%")
+    render partial: 'recipes', locals: { recipes: @recipes }
+  end
+
   private
 
     def set_recipe

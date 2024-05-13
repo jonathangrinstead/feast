@@ -1,0 +1,15 @@
+<div class="overflow-auto mb-20 mt-8 p-12">
+  <h1 class="mb-8 font-bold">Search Results </h1>
+  <div class='grid grid-cols-2'>
+    <% recipes.each do |recipe| %>
+    <div class="relative">
+      <%= link_to recipe_path(recipe), class:"after:absolute after:inset-0" do%>
+        <div class="card bg-base-100 shadow-xl m-2 h-40 w-40 text-center">
+          <div class="card-body">
+            <h2 class="card-title"><%= recipe.name %></h2>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
