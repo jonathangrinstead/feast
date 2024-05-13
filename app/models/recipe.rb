@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  include PgSearch::Model
   belongs_to :user
   has_many :ingredients, dependent: :destroy
   has_many :instructions, dependent: :destroy
@@ -14,4 +15,15 @@ class Recipe < ApplicationRecord
 
   scope :shared, -> { where(is_shareable: true) }
   scope :most_recent, -> { order(created_at: :desc) }
+
+  pg_search_scope :search_by_title, 
+  against: :title, 
+  using: {
+    tsearch: { prefix: true }
+  },
+  associated_against: {
+    user: :name
+  },
+  using: :tsearch,
+  scope: :shared
 end

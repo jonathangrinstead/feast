@@ -84,3 +84,5 @@ gem 'httparty'
 gem "ruby-openai"
 
 gem 'gon'
+
+gem 'pg_search'
