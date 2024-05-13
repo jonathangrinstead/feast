@@ -1,15 +1,19 @@
 <div class="overflow-auto mb-20 mt-8 p-12">
-  <h1 class="mb-8 font-bold">Search Results </h1>
+  <h1 class="text-2xl font-bold mb-8">Search Results </h1>
   <div class='grid grid-cols-2'>
     <% recipes.each do |recipe| %>
     <div class="relative">
       <%= link_to recipe_path(recipe), class:"after:absolute after:inset-0" do%>
-        <div class="card bg-base-100 shadow-xl m-2 h-40 w-40 text-center">
-          <div class="card-body">
-            <h2 class="card-title"><%= recipe.name %></h2>
+        <div class="relative card bg-base-100 shadow-xl h-40 w-40 text-center">
+          <div class="absolute inset-0 blur-sm rounded-md brightness-90" style="background: url(<%= cl_image_path recipe.photo.key %>); background-size: cover;"></div>
+          <div class="relative">
+            <div class="card-body">
+              <h2 class="card-title drop-shadow-md"><%= recipe.name %></h2>
+            </div>
           </div>
         </div>
-        <% end %>
-      </div>
+      <% end %>
+    </div>
     <% end %>
   </div>
+</div>
