@@ -1,10 +1,10 @@
-<div class="overflow-auto mb-20 mt-8 p-12">
+<div class="overflow-auto mb-20 mt-8 pt-12 pl-8">
   <h1 class="text-2xl font-bold mb-8">Search Results </h1>
   <div class='grid grid-cols-2'>
     <% recipes.each do |recipe| %>
     <div class="relative">
       <%= link_to recipe_path(recipe), class:"after:absolute after:inset-0" do%>
-        <div class="relative card bg-base-100 shadow-xl h-40 w-40 text-center">
+        <div class="relative card bg-base-100 shadow-xl h-40 w-40 text-center p-4 mb-8">
           <div class="absolute inset-0 blur-sm rounded-md brightness-90" style="background: url(<%= cl_image_path recipe.photo.key %>); background-size: cover;"></div>
           <div class="relative">
             <div class="card-body">
