@@ -46,7 +46,7 @@ main {
   position: absolute;
   top: 40px; /* Adjust based on your button's position */
   left: 50%;
-  transform: translateX(-50%) scale(0);
+  transform: translateX(-50%) scale(0.01);
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   opacity: 0;
   z-index: 1000;
