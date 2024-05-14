@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#home"
   get "dashboard/home", to: 'dashboard#home', as: 'home'
+  get "profile/:username", to: 'profile#show', as: 'profile'
   get "recipes/shared", to: 'recipes#shared'
   get "recipes/search", to: 'recipes#search'
   post "ai/create", to: 'ai#create'
