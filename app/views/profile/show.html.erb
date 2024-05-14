@@ -1,1 +1,45 @@
-<h1>Profile Page !</h1>
+<div class="container mt-4 p-12">
+    
+    <div class="flex justify-between">
+
+        <div class="mb-4">
+        <%= link_to :back, class: "btn btn-lg btn-neutral", id: "back-to-home" do %>
+            <i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i>
+        <% end %>
+        </div>
+
+        <div class="avatar w-24 h-24">
+            <figure> <%= cl_image_tag @user.photo.key, class:'rounded-full'%></figure>
+        </div>
+    
+    </div>
+    
+    <div id='name-follow-posts-followers'>
+        <h2 class="card-title justify-end">@<%= @user.username %></h2>
+        <div class="flex justify-between font-bold">
+            <h4><%= @user.recipes.count %> recipes</h4>
+            <h4>5 followers</h4>
+            <h4>10 following</h4>
+        </div>
+    </div>
+
+    <div id='recipes'>
+         <h1 class="text-2xl font-bold mb-8 mt-8"> Recipes:</h1>
+            <div class='grid grid-cols-2'>
+                <% @user.recipes.each do |recipe| %>
+                <div class="relative">
+                <%= link_to recipe_path(recipe), class:"after:absolute after:inset-0" do%>
+                    <div class="relative card bg-base-100 shadow-xl h-40 w-40 text-center p-4 mb-8">
+                    <div class="absolute inset-0 blur-sm rounded-md brightness-90" style="background: url(<%= cl_image_path recipe.photo.key %>); background-size: cover;"></div>
+                    <div class="relative">
+                        <div class="card-body">
+                        <h2 class="card-title drop-shadow-md"><%= recipe.name %></h2>
+                        </div>
+                    </div>
+                    </div>
+                <% end %>
+                </div>
+                <% end %>
+            </div>
+    </div>      
+</div>
