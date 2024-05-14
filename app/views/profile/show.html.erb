@@ -3,7 +3,7 @@
     <div class="flex justify-between">
 
         <div class="mb-4">
-        <%= link_to :back, class: "btn btn-lg btn-neutral", id: "back-to-home" do %>
+        <%= link_to home_path, class: "btn btn-lg btn-neutral", id: "back-to-home" do %>
             <i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i>
         <% end %>
         </div>
@@ -41,5 +41,11 @@
                 </div>
                 <% end %>
             </div>
-    </div>      
+    </div>
+
+    <div class='flex justify-center'>
+        <% if current_user == @user %>
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %>
+        <% end %> 
+    </div>     
 </div>
