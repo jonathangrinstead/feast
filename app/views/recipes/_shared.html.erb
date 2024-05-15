@@ -1,17 +1,17 @@
 
-<div>
+<div >
   <% @recipes.each do |recipe| %>
     <div class="card w-96 bg-base-100 shadow-xl mb-6" >
       <figure class='h-96'><%= cl_image_tag recipe.photo.key %></figure>
       <div class="card-body" >
         <div class='flex justify-between'>
-            <h4><%= recipe.likes.count %> Likes</h4>
+            <h4><span data-controller="like-count" data-like-count-target="count"><%= recipe.likes.count %></span> Likes</h4>
             <h4>@<%= link_to recipe.user.username, profile_path(recipe.user.username)%></h4>
         </div>
           <div class="divider divider-primary mt-0 mb-0"></div>
         <h2 class="card-title"><%= recipe.name %></h2>
         <p><%= recipe.description %></p>
-        <div class="card-actions justify-between mt-2">
+        <div class="card-actions justify-between mt-2" >
           <% bookmark_id = find_user_bookmark_id(current_user, recipe) %>
           <button data-controller='bookmark'
           data-bookmark-recipe-id-value="<%=recipe.id %>"
@@ -21,7 +21,7 @@
           class="btn btn-outline btn-accent w-12 h-12"
           ><i class="fa-regular fa-bookmark fa-lg" style="color: #000000;"></i></button>
           <% like_id = find_user_like_id(current_user, recipe) %>
-          <button data-controller="like"
+          <button data-controller="like" data-like-target="icon" 
             data-like-recipe-id-value="<%= recipe.id %>"
             data-like-like-id-value="<%= like_id %>"
             data-like-liked-value="<%= current_user_likes_recipe?(recipe) %>"
