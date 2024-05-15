@@ -3,11 +3,25 @@ class LikesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @recipe.likes.create(user: current_user) unless already_liked?
+    if already_liked?
+      render json: { success: false }
+    else
+      @recipe.likes.create(user_id: current_user.id)
+      respond_to do |format|
+        format.json { render json: { success: true, newCount: @recipe.likes.count } }
+      end
+    end
   end
 
   def destroy
-    @recipe.likes.where(user: current_user).destroy_all if already_liked?
+    if !(already_liked?)
+      render json: { success: false }
+    else
+      Like.where(recipe_id: params[:recipe_id], user_id: current_user.id).first.destroy
+      respond_to do |format|
+        format.json { render json: { success: true, newCount: @recipe.likes.count } }
+      end
+    end
   end
 
   private
