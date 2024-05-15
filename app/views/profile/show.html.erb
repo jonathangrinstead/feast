@@ -47,5 +47,18 @@
         <% if current_user == @user %>
             <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %>
         <% end %> 
-    </div>     
+    </div>
+    
+   
+    <div id="follow_container" data-controller="follow" class=>
+        <form action="<%= toggle_follow_user_path(@user) %>" method="post" data-action="follow#toggle" data-follow-target="button" 
+        class="<%= current_user == @user ? 'hidden' : '' %>">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <button type="submit" class="btn btn-primary <%= current_user.following?(@user) ? 'btn-outline' : '' %>">
+            <%= current_user.following?(@user) ? 'Following' : 'Follow' %>
+            </button>
+        </form>
+        <p>Followers: <span data-follow-target="count"><%= @user.followers.count %></span></p>
+    </div>
+         
 </div>

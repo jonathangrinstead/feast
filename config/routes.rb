@@ -20,4 +20,10 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:create, :destroy]
     resources :comments, only: [:new, :create]
   end
+
+  resources :users, only: [:show] do
+    member do
+      post 'toggle_follow', to: 'follows#toggle'
+    end
+  end
 end
