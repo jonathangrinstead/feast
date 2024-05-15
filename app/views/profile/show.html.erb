@@ -8,18 +8,32 @@
         <% end %>
         </div>
 
-        <div class="avatar w-24 h-24">
+        <div class="avatar w-24 h-24 mb-4">
             <figure> <%= cl_image_tag @user.photo.key, class:'rounded-full'%></figure>
         </div>
     
     </div>
     
     <div id='name-follow-posts-followers'>
-        <h2 class="card-title justify-end">@<%= @user.username %></h2>
-        <div class="flex justify-between font-bold">
-            <h4><%= @user.recipes.count %> recipes</h4>
-            <h4>5 followers</h4>
-            <h4>10 following</h4>
+        <h2 class="card-title justify-end mb-4">@<%= @user.username %></h2>
+        <div id="follow_container" data-controller="follow">
+            <div class="flex justify-end mb-4">
+                <% if current_user == @user %>
+                    <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %>
+                <% end %> 
+                <form action="<%= toggle_follow_user_path(@user) %>" method="post" data-action="follow#toggle" data-follow-target="button" 
+                    class="<%= current_user == @user ? 'hidden' : '' %> "> 
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <button type="submit" class="btn btn-primary <%= current_user.following?(@user) ? 'btn-outline' : '' %>">
+                    <%= current_user.following?(@user) ? 'Following' : 'Follow' %>
+                    </button>
+                </form>
+            </div>
+            <div class="flex justify-between font-bold">
+                <h4><%= @user.recipes.count %> recipes</h4>
+                <h4><span data-follow-target="count"><%= @user.followers.count %></span> Followers</h4>
+                <h4><%= @user.following.count %> Following</h4> 
+            </div>
         </div>
     </div>
 
@@ -44,21 +58,8 @@
     </div>
 
     <div class='flex justify-center'>
-        <% if current_user == @user %>
-            <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %>
-        <% end %> 
+        
     </div>
     
    
-    <div id="follow_container" data-controller="follow" class=>
-        <form action="<%= toggle_follow_user_path(@user) %>" method="post" data-action="follow#toggle" data-follow-target="button" 
-        class="<%= current_user == @user ? 'hidden' : '' %>">
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <button type="submit" class="btn btn-primary <%= current_user.following?(@user) ? 'btn-outline' : '' %>">
-            <%= current_user.following?(@user) ? 'Following' : 'Follow' %>
-            </button>
-        </form>
-        <p>Followers: <span data-follow-target="count"><%= @user.followers.count %></span></p>
-    </div>
-         
 </div>
