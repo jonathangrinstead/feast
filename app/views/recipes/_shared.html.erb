@@ -5,8 +5,8 @@
       <figure class='h-96'><%= cl_image_tag recipe.photo.key %></figure>
       <div class="card-body" >
         <div class='flex justify-between'>
-            <h4><span data-controller="like-count" data-like-count-target="count"><%= recipe.likes.count %></span> Likes</h4>
-            <h4>@<%= link_to recipe.user.username, profile_path(recipe.user.username)%></h4>
+            <h4 class="font-bold"><span data-controller="like-count" data-like-count-target="count"><%= recipe.likes.count %></span> Like<%= recipe.likes.count > 1 ? 's' : '' %></h4>
+            <h4 class="font-bold">@<%= link_to recipe.user.username, profile_path(recipe.user.username)%></h4>
         </div>
           <div class="divider divider-primary mt-0 mb-0"></div>
         <h2 class="card-title"><%= recipe.name %></h2>
@@ -40,7 +40,7 @@
                     <p class="py-4">
                       <% recipe.comments.each do |comment| %>
                         <div class="card shadow-xl mb-2 p-2 text-center">
-                          <h6>@<%= comment.user.username %>: <%= comment.text%></h6>
+                          <h6>@<%= comment.user.username %>: <%= comment.text %></h6>
                         </div>
                       <% end %>
                     </p>
