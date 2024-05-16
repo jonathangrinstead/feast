@@ -11,7 +11,7 @@
           <div class="divider divider-primary mt-0 mb-0"></div>
         <h2 class="card-title"><%= recipe.name %></h2>
         <p><%= recipe.description %></p>
-        <div class="card-actions justify-between mt-2" >
+        <div class="card-actions justify-between mt-2"  >
           <% bookmark_id = find_user_bookmark_id(current_user, recipe) %>
           <button data-controller='bookmark'
           data-bookmark-recipe-id-value="<%=recipe.id %>"
@@ -21,14 +21,13 @@
           class="btn btn-outline btn-accent w-12 h-12"
           ><i class="fa-regular fa-bookmark fa-lg" style="color: #000000;"></i></button>
           <% like_id = find_user_like_id(current_user, recipe) %>
-          <button data-controller="like" data-like-target="icon" 
+          <button data-like-target="icon" data-controller="like"
             data-like-recipe-id-value="<%= recipe.id %>"
             data-like-like-id-value="<%= like_id %>"
             data-like-liked-value="<%= current_user_likes_recipe?(recipe) %>"
             data-action="click->like#toggleLike" class="btn btn-outline btn-primary w-12 h-12">
           </button>
         </div>
-
         <div class="comments-section flex justify-center">
           <div class="columns-1">
               <div data-controller="modal">
