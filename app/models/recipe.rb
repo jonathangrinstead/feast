@@ -18,6 +18,9 @@ class Recipe < ApplicationRecord
   scope :shared, -> { where(is_shareable: true) }
   scope :most_recent, -> { order(created_at: :desc) }
 
+  after_create :deliver_notifications
+
+  
   pg_search_scope :search_by_title, 
   against: :title, 
   using: {
@@ -27,4 +30,8 @@ class Recipe < ApplicationRecord
     user: :name
   },
   scope: :shared
+
+  def deliver_notifications
+    RecipeNotifier.with(record: self).deliver(user.followers)
+  end
 end
