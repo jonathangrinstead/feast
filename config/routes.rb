@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "profile/:username", to: 'profile#show', as: :profile
   get "recipes/shared", to: 'recipes#shared'
   get "recipes/search", to: 'recipes#search'
+  get "notifications", to: 'notifications#index'
   post "ai/create", to: 'ai#create'
   resources :recipes do
     resources :ingredients, only: [:create, :update, :destroy], shallow: true

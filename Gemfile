@@ -88,3 +88,4 @@ gem 'gon'
 gem 'pg_search'
 
 gem 'faker'
+gem "noticed", "~> 2.2"
