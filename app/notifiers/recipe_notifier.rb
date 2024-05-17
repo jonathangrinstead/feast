@@ -14,10 +14,7 @@ class RecipeNotifier < ApplicationNotifier
   # deliver_by :custom do |config|
   #   config.class = "MyDeliveryMethod"
   # end
-  deliver_by :database
   
-  param :recipe
-
   notification_methods do 
     def message 
       "@#{record.user.username} has a new recipe: #{record.name}" 
