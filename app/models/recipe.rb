@@ -8,6 +8,8 @@ class Recipe < ApplicationRecord
   has_many :bookmarks
   has_many :comments
 
+  has_many :notification_mentions, as: :record, dependent: :destroy, class_name: 'Noticed::Event'
+
   accepts_nested_attributes_for :ingredients, allow_destroy: true
   accepts_nested_attributes_for :instructions, allow_destroy: true
 

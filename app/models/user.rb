@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :passive_follows, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy
   has_many :followers, through: :passive_follows, source: :follower
 
+  has_many :notifications, as: :recipient, dependent: :destroy, class_name: 'Noticed::Notification'
+  has_many :notification_mentions, as: :record, dependent: :destroy, class_name: 'Noticed::Event'
+
   def following?(user)
     following.include?(user)
   end
