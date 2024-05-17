@@ -19,6 +19,10 @@ class RecipeNotifier < ApplicationNotifier
     def message 
       "@#{record.user.username} has a new recipe: #{record.name}" 
     end
+
+    def url 
+      recipe_path(record)
+    end
   end
   # required_param :message
 end

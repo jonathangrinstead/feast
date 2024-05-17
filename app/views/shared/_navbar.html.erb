@@ -13,8 +13,18 @@
   <div class="flex">
     <% if user_signed_in? %>
       <div class="flex gap-2 justify-center">
+
         <i class="fa-solid fa-envelope fa-xl mt-6 mr-4" style="color: #ffffff;"></i>
-        <i class="fa-solid fa-bell fa-xl mt-6 mr-2" style="color: #ffffff;"></i>
+
+        <div class="dropdown dropdown-end">
+          <div tabindex="1" role="button">
+            <i class="fa-solid fa-bell fa-xl mt-6 mr-2" style="color: <%= current_user.notifications ? '#9CCBBA' : '#ffffff' %>;"></i> 
+          </div>
+          <ul tabindex="1" class="mt-7 z-[1] shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+            <%= render 'notifications/index', notifications: @notifications %>
+          </ul>
+        </div>
+
         <div class="dropdown dropdown-end">
           <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
             <div class="w-10 rounded-full">
@@ -26,6 +36,7 @@
             <li><%= link_to 'Logout', destroy_user_session_path, data: { "turbo-method": :delete } %></li>
           </ul>
         </div>
+
       </div>
     <% else %>
       <button class="btn btn-ghost text-xl">
