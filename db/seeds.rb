@@ -10,6 +10,8 @@
 require 'faker'
 require 'open-uri'
 
+
+
 20.times do
     user = User.create!(
         username: Faker::Internet.unique.username,
@@ -20,9 +22,31 @@ require 'open-uri'
     # Attach an image to the user
     file = URI.open('https://hackspirit.com/wp-content/uploads/2021/06/Copy-of-Rustic-Female-Teen-Magazine-Cover.jpg')
     user.photo.attach(io: file, filename: 'profilepic.jpg', content_type: 'image/jpg')
-end
-
-puts '20 users created'
+  end
+  
+  puts '20 users created'
+  
+  # After creating users
+  
+  # Randomly create follow relationships between users
+  User.all.each do |user|
+    # Select a random number of users to follow
+    rand(1..10).times do
+      begin
+        # Select a random user to follow
+        followee = User.all.sample
+        # Ensure the user is not trying to follow themselves
+        next if user == followee
+        # Create the follow relationship
+        Follow.create!(follower: user, followed: followee)
+      rescue ActiveRecord::RecordNotUnique
+        # This will rescue the error if the follow relationship already exists
+        retry
+      end
+    end
+  end
+  
+  puts 'Follow relationships created'
 
 recipe_image_urls= [
     "https://www.simplyrecipes.com/thmb/zSvZNZj70cA9uzOgV3oZEV5dvrQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Baklava-LEAD-4-a9d125c8d66547ef9f92c6564a5d5241.jpg",
