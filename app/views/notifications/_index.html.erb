@@ -1,0 +1,7 @@
+
+<% @notifications.each do |notification| %>
+    <li class= 'p-2 mt-2'>
+        <%= link_to notification.message, notification.url %>
+    </li>
+<% end %>
+ 
