@@ -14,7 +14,9 @@
     <% if user_signed_in? %>
       <div class="flex gap-2 justify-center">
 
-        <i class="fa-solid fa-envelope fa-xl mt-6 mr-4" style="color: #ffffff;"></i>
+        <%= link_to chatrooms_path do %>
+          <i class="fa-solid fa-envelope fa-xl mt-6 mr-4" style="color: #ffffff;"></i>
+        <% end %>
 
         <div class="dropdown dropdown-end">
           <div tabindex="1" role="button">

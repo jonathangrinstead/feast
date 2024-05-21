@@ -1,0 +1,12 @@
+<div class="container mt-4 p-12">
+
+    <li>
+        <% @mutuals.each do |mutual| %>
+            <ol>
+                <li class="card p-4">@<%= mutual.username %></li>
+            </ol>
+        <% end %>
+
+    </li>
+
+</div>
