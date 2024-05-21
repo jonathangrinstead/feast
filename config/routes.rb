@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "recipes/search", to: 'recipes#search'
   get "notifications", to: 'notifications#index'
   post "ai/create", to: 'ai#create'
+  resources :chatrooms, only: [:index, :show, :new, :create]
   resources :recipes do
     resources :ingredients, only: [:create, :update, :destroy], shallow: true
     resources :instructions, only: [:create, :update, :destroy], shallow: true
