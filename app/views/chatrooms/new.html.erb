@@ -1,12 +1,22 @@
 <div class="container mt-4 p-12">
 
-    <li>
-        <% @mutuals.each do |mutual| %>
-            <ol>
-                <li class="card p-4">@<%= mutual.username %></li>
-            </ol>
+    <div class="mb-4">
+        <%= link_to :back, class: "btn btn-lg btn-neutral", id: "back-to-home" do %>
+            <i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i>
         <% end %>
+    </div>
 
-    </li>
-
+    <ol class="flex justify-center w-100 mt-8">
+        <% @mutuals.each do |mutual| %>
+            <%= link_to create_chatroom_path(mutual_id: mutual.id), data: { turbo_method: "post" } do %>
+                <li class="card bg-primary text-primary-content p-4">
+                    <div class="flex justify-between">
+                        <h4 class="font-bold mr-12"> @<%= mutual.username %></h4>
+                        <figure> <img src="<%= cl_image_path(mutual.photo.key) %>" class="rounded-full h-16 w-16" /> </figure>
+                    </div>
+                </li>
+            <% end %>
+        <% end %>
+    </ol>
+    
 </div>
