@@ -16,4 +16,17 @@
         
     </div>
 
+    <ol class="w-100 mt-8">
+        <% @chatrooms.each do |chatroom| %>
+            <%= link_to chatroom_path(chatroom), data: { turbo_method: "get" } do %>
+                <li class="card bg-secondary text-primary-content p-4 mt-4">
+                    <div class="flex justify-between">
+                        <h4 class="font-bold mr-12"> @<%= chatroom.users.last.username %></h4>
+                        <figure> <img src="<%= cl_image_path(chatroom.users.last.photo.key) %>" class="rounded-full h-16 w-16" /> </figure>
+                    </div>
+                </li>
+            <% end %>
+        <% end %>
+    </ol>
+
 </div>
