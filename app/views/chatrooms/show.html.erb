@@ -1,3 +1,68 @@
 <div class="container mt-4 p-12">
-    <h1> This is my a chatroom </h1>
+
+    <div class="flex justify-between">
+
+        <div class="mb-8">
+            <%= link_to chatrooms_path, class: "btn btn-lg btn-neutral", id: "back-to-home" do %>
+                <i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i>
+            <% end %>
+        </div>
+        
+        <div class="mb-8">
+            <div class="card bg-base-100 shadow-xl">
+                <figure> <%= cl_image_tag @chatroom.users.last.photo.key, class:'w-16 h-16 object-cover rounded-full mt-4'%></figure>
+                <div class="card-body">
+                    <h2 class="card-title text-center">@<%= @chatroom.users.last.username %></h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="flex flex-col justify-between">
+        <div id="messages-container">
+            <% @chatroom.messages.each do |message| %>
+                <div id="message-<%= message.id %>">
+                    <% if message.user != current_user %>
+                        <div class="chat chat-start">
+                            <div class="chat-image avatar">
+                                <div class="w-10 rounded-full">
+                                    <img alt="Tailwind CSS chat bubble component" <%= cl_image_tag message.user.photo.key %> /> 
+                                </div>
+                            </div>
+                            <div class="chat-header">
+                                @<%= message.user.username %>
+                                <time class="text-xs opacity-50"><%= message.created_at.strftime('%H:%M') %></time>
+                            </div>
+                            <div class="chat-bubble chat-bubble-secondary"><%= message.content %></div>  
+                        </div> 
+                    <% else %>
+                        <div class="chat chat-end">
+                            <div class="chat-image avatar">
+                                <div class="w-10 rounded-full">
+                                    <img alt="Tailwind CSS chat bubble component" <%= cl_image_tag message.user.photo.key %>/> 
+                                </div>
+                            </div>
+                            <div class="chat-header">
+                                @<%= message.user.username %>
+                                <time class="text-xs opacity-50"><%= message.created_at.strftime('%H:%M') %></time>
+                            </div>
+                            <div class="chat-bubble chat-bubble-accent"><%= message.content %></div>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+
+        <%= form_with(model: [ @chatroom, Message.new ], local: true, class: 'flex mt-4') do |form| %>
+            <div class="flex-grow mr-2">
+                <%= form.label :content, "Message:", class: 'sr-only' %>
+                <%= form.text_area :content, class: 'input input-bordered pt-2', placeholder: 'Enter your message here' %>
+            </div>
+
+            <%= form.button type: "submit", class: 'btn btn-primary' do %>
+                <i class="fa-regular fa-paper-plane fa-lg"></i>
+            <% end %>
+        <% end %>
+    </div>
 </div>
