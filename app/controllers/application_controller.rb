@@ -11,7 +11,9 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_notifications
-    @notifications = current_user.notifications.order(created_at: :desc).includes(event: :record)
+    if user_signed_in?
+      @notifications = current_user.notifications.order(created_at: :desc).includes(event: :record)
+    end
   end
 
 end

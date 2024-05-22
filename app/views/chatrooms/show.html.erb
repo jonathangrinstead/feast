@@ -19,42 +19,17 @@
 
     </div>
 
-    <div class="flex flex-col justify-between">
-        <div id="messages-container">
+    <div class="flex flex-col justify-between overflow-auto h-96" data-controller="chatroom-subscription" 
+    data-chatroom-subscription-target="messagesContainer" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+        <div class="messages" data-chatroom-subscription-target="messages">
             <% @chatroom.messages.each do |message| %>
-                <div id="message-<%= message.id %>">
-                    <% if message.user != current_user %>
-                        <div class="chat chat-start">
-                            <div class="chat-image avatar">
-                                <div class="w-10 rounded-full">
-                                    <img alt="Tailwind CSS chat bubble component" <%= cl_image_tag message.user.photo.key %> /> 
-                                </div>
-                            </div>
-                            <div class="chat-header">
-                                @<%= message.user.username %>
-                                <time class="text-xs opacity-50"><%= message.created_at.strftime('%H:%M') %></time>
-                            </div>
-                            <div class="chat-bubble chat-bubble-secondary"><%= message.content %></div>  
-                        </div> 
-                    <% else %>
-                        <div class="chat chat-end">
-                            <div class="chat-image avatar">
-                                <div class="w-10 rounded-full">
-                                    <img alt="Tailwind CSS chat bubble component" <%= cl_image_tag message.user.photo.key %>/> 
-                                </div>
-                            </div>
-                            <div class="chat-header">
-                                @<%= message.user.username %>
-                                <time class="text-xs opacity-50"><%= message.created_at.strftime('%H:%M') %></time>
-                            </div>
-                            <div class="chat-bubble chat-bubble-accent"><%= message.content %></div>
-                        </div>
-                    <% end %>
-                </div>
+                <%= render "messages/message", message: message %>
             <% end %>
         </div>
+    </div>
 
-        <%= form_with(model: [ @chatroom, Message.new ], local: true, class: 'flex mt-4') do |form| %>
+        <%= form_with(model: [ @chatroom, Message.new ], local: true,
+       html: { data: { action: "submit->chatroom-subscription#resetForm", target: "chatroom-subscription.form" }, class: 'flex mt-4' }) do |form| %>
             <div class="flex-grow mr-2">
                 <%= form.label :content, "Message:", class: 'sr-only' %>
                 <%= form.text_area :content, class: 'input input-bordered pt-2', placeholder: 'Enter your message here' %>
