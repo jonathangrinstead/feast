@@ -23,7 +23,9 @@
             <i class="fa-solid fa-bell fa-xl mt-6 mr-2" style="color: <%= current_user.notifications ? '#9CCBBA' : '#ffffff' %>;"></i> 
           </div>
           <ul tabindex="1" class="mt-7 z-[1] shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-            <%= render 'notifications/index', notifications: @notifications %>
+            <% if user_signed_in? && @notifications %>
+              <%= render 'notifications/index', notifications: @notifications %>
+            <% end %>
           </ul>
         </div>
 
