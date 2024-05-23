@@ -56,7 +56,7 @@ export default class extends Controller {
       }
 
       this.outputTarget.innerHTML = `<div class="card w-96 bg-base-100 shadow-xl">
-                                      <figure><img src="${data.image_url}" alt="${title}" /></figure>
+                                      <figure><img src="${data.image_url}" alt="${title}" class="h-48"/></figure>
                                         <div class="card-body">
                                           <h2 class="card-title">${title}</h2>
                                           <h4 class="font-bold">Ingredients:</h4>
