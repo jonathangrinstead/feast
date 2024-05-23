@@ -4,7 +4,7 @@ import { createConsumer } from "@rails/actioncable"
 // Connects to data-controller="chatroom-subscription"
 export default class extends Controller {
   static values = { chatroomId: Number }
-  static targets = ["messages", "form", "messagesContainer"]
+  static targets = ["messages", "form"]
 
   connect() {
     this.scrollToBottom()
@@ -20,12 +20,15 @@ export default class extends Controller {
   }
 
   resetForm(event) {
-    event.preventDefault();
-    this.formTarget.reset();
+    event.target.reset()
   }
 
   scrollToBottom() {
-    this.messagesContainerTarget.scrollTop = this.messagesContainerTarget.scrollHeight;
+    this.messagesTarget.scrollTop = this.messagesTarget.scrollHeight;
+  }
+
+  disconnect() {
+    this.subscription.unsubscribe()
   }
 }
 
