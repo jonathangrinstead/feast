@@ -4,3 +4,4 @@ import "controllers"
 import "@rails/actioncable"
 console.log('Hello from application.js!') 
 import "./channels"
+import 'source-map-support/register'
