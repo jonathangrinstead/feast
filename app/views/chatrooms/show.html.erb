@@ -1,4 +1,4 @@
-<div class="container mt-4 p-12">
+<div class="container p-12">
 
     <div class="flex justify-between">
 
@@ -9,10 +9,11 @@
         </div>
         
         <div class="mb-8">
+            <% chatting_to = @chatroom.users.reject { |user| user == current_user }.first %>
             <div class="card bg-base-100 shadow-xl">
-                <figure> <%= cl_image_tag @chatroom.users.last.photo.key, class:'w-16 h-16 object-cover rounded-full mt-4'%></figure>
+                <figure> <%= cl_image_tag chatting_to.photo.key, class:'w-16 h-16 object-cover rounded-full mt-4'%></figure>
                 <div class="card-body">
-                    <h2 class="card-title text-center">@<%= @chatroom.users.last.username %></h2>
+                    <h2 class="card-title text-center">@<%= chatting_to.username %></h2>
                 </div>
             </div>
         </div>

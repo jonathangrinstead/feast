@@ -15,12 +15,12 @@
       <div class="flex gap-2 justify-center">
 
         <%= link_to chatrooms_path do %>
-          <i class="fa-solid fa-envelope fa-xl mt-6 mr-4" style="color: #ffffff;"></i>
+          <i class="fa-solid fa-envelope fa-xl mt-8 mr-4" style="color: #ffffff;"></i>
         <% end %>
 
         <div class="dropdown dropdown-end">
           <div tabindex="1" role="button">
-            <i class="fa-solid fa-bell fa-xl mt-6 mr-2" style="color: <%= current_user.notifications ? '#9CCBBA' : '#ffffff' %>;"></i> 
+            <i class="fa-solid fa-bell fa-xl mt-8 mr-2" style="color: <%= current_user.notifications ? '#9CCBBA' : '#ffffff' %>;"></i> 
           </div>
           <ul tabindex="1" class="mt-7 z-[1] shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
             <% if user_signed_in? && @notifications %>
@@ -31,7 +31,7 @@
 
         <div class="dropdown dropdown-end">
           <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full">
+            <div class="w-10 rounded-full mt-2">
               <img alt="Tailwind CSS Navbar component shadow-xl" <%= cl_image_tag current_user.photo.key %> />
             </div>
           </div>
