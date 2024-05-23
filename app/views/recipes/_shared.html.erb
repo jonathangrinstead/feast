@@ -1,8 +1,8 @@
 
-<div >
+<div class="mt-6">
   <% @recipes.each do |recipe| %>
-    <div class="card w-96 bg-base-100 shadow-xl mb-6" >
-      <figure class='h-96'><%= cl_image_tag recipe.photo.key %></figure>
+    <div class="card w-full bg-base-100 shadow-xl mb-6" >
+      <figure class='h-48'><%= cl_image_tag recipe.photo.key %></figure>
       <div class="card-body" >
         <div class='flex justify-between'>
             <h4 class="font-bold"><span data-controller="like-count" data-like-count-target="count"><%= recipe.likes.count %></span> Like<%= recipe.likes.count > 1 ? 's' : '' %></h4>
