@@ -4,3 +4,4 @@ import "controllers"
 import "@rails/actioncable"
 import "./channels"
 import 'source-map-support/register'
+import "../assets/stylesheets"
