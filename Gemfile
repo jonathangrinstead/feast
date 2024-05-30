@@ -77,8 +77,6 @@ gem "cloudinary"
 
 gem 'simple_form'
 
-gem 'webpacker'
-
 gem 'httparty'
 
 gem "ruby-openai"
