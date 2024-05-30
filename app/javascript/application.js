@@ -2,5 +2,5 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "@rails/actioncable"
-console.log('Hello from application.js!') 
-import "./channels"
+console.log('Hello from application.js!')
+import "channels"

@@ -4,6 +4,7 @@ export default class extends Controller {
   static targets = ["panel"]
 
   connect() {
+    console.log('Hello from tabs_controller.js!')
         let hash = window.location.hash;
       if (hash) {
         const tab = this.element.querySelector(`[data-tab-target="${hash}"]`);

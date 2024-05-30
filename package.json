@@ -1,14 +1,13 @@
 {
   "devDependencies": {
     "daisyui": "^4.6.0",
-    "tailwindcss": "^3.4.3",
-    "webpack-dev-server": "^3"
+    "tailwindcss": "^3.4.3"
   },
   "dependencies": {
-    "@rails/webpacker": "5.4.4",
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.4",
+    "@rails/actioncable": "^7.0.8-3",
     "axios": "^1.6.8",
-    "dotenv": "^16.4.5",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+    "dotenv": "^16.4.5"
   }
 }
