@@ -1,9 +1,7 @@
 {
-  "devDependencies": {
-    "daisyui": "^4.6.0",
-    "tailwindcss": "^3.4.3"
-  },
   "dependencies": {
+    "daisyui": "^4.6.0",
+    "tailwindcss": "^3.4.3",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.4",
     "@rails/actioncable": "^7.0.8-3",
