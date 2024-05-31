@@ -4,7 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validate :password_complexity
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: 'is not a valid email' }
   has_one_attached :photo
+  
   has_many :recipes
   has_many :likes
   has_many :liked_recipes, through: :likes, source: :recipe
@@ -24,5 +27,24 @@ class User < ApplicationRecord
 
   def following?(user)
     following.include?(user)
+  end
+
+  private 
+
+  def password_complexity
+    if password.present?
+      unless password.length >= 8
+        errors.add :password, 'must be at least 8 characters long'
+      end
+
+      unless password =~ /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])/
+        errors.add :password, 'must include at least one lowercase letter, one uppercase letter, one digit, and one special character'
+      end
+
+      common_passwords = %w[password 123456 qwerty 111111 abc123]
+      if common_passwords.include?(password.downcase)
+        errors.add :password, 'is too common'
+      end
+    end
   end
 end
