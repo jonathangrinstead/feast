@@ -2,7 +2,7 @@ require 'httparty'
 require 'openai'
 
 
-class OpenAIService
+class OpenAiService
   include HTTParty
 
 
