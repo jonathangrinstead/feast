@@ -22,6 +22,6 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
-    [require("daisyui")]
+    require("daisyui")
   ]
 }
