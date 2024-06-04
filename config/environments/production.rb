@@ -28,8 +28,6 @@ Rails.application.configure do
 
   config.assets.digest = true
 
-  config.assets.js_compressor = :uglifier
-
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
 

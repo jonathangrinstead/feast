@@ -119,7 +119,6 @@ GEM
     error_highlight (0.6.0)
     erubi (1.12.0)
     event_stream_parser (1.0.0)
-    execjs (2.9.1)
     faker (3.3.1)
       i18n (>= 1.8.11, < 2)
     faraday (2.9.0)
@@ -289,8 +288,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     uri (0.13.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -339,7 +336,6 @@ DEPENDENCIES
   tailwindcss-rails (~> 2.3)
   turbo-rails
   tzinfo-data
-  uglifier
   web-console
 
 RUBY VERSION
