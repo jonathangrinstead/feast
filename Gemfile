@@ -89,5 +89,3 @@ gem 'faker'
 
 gem "noticed", "~> 2.2"
 
-gem 'uglifier'
-
