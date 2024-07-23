@@ -10,7 +10,29 @@
 require 'faker'
 require 'open-uri'
 
+jenny_test = User.create!(
+    username: 'Jenny Smith',
+    email: 'jenny@test.com',
+    password: 'Password1!'
+)
 
+jenny_img = URI.open('https://spdphoto.co.uk/wp-content/uploads/2018/08/passportx.png')
+
+jenny_test.photo.attach(io: jenny_img, filename: 'profilepic.jpg', content_type: 'image/jpg')
+
+puts 'jenny created'
+
+timmy_test = User.create!(
+    username: 'Timmy Johnson',
+    email: 'timmy@test.com',
+    password: 'Password1!'
+)
+
+timmy_img = URI.open('https://media.istockphoto.com/id/1176772006/photo/portrait-of-man-looking-at-camera-over-white-background.jpg?s=612x612&w=0&k=20&c=hhlfr_8TgalVqSMprxcXHKhCnqixB3sxKDUXnr7IfT8=')
+
+timmy_test.photo.attach(io: timmy_img, filename: 'profilepic.jpg', content_type: 'image/jpg')
+
+puts 'timmy created'
 
 20.times do
     user = User.create!(
@@ -22,12 +44,20 @@ require 'open-uri'
     # Attach an image to the user
     file = URI.open('https://hackspirit.com/wp-content/uploads/2021/06/Copy-of-Rustic-Female-Teen-Magazine-Cover.jpg')
     user.photo.attach(io: file, filename: 'profilepic.jpg', content_type: 'image/jpg')
-  end
-  
+end
+
   puts '20 users created'
-  
+
   # After creating users
-  
+
+# Jenny follows Timmy
+Follow.create!(follower: jenny_test, followed: timmy_test)
+
+# Timmy follows Jenny
+Follow.create!(follower: timmy_test, followed: jenny_test)
+
+puts 'Jenny and Timmy now follow each other'
+
   # Randomly create follow relationships between users
   User.all.each do |user|
     # Select a random number of users to follow
@@ -45,18 +75,126 @@ require 'open-uri'
       end
     end
   end
-  
+
   puts 'Follow relationships created'
 
 recipe_image_urls= [
     "https://www.simplyrecipes.com/thmb/zSvZNZj70cA9uzOgV3oZEV5dvrQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Baklava-LEAD-4-a9d125c8d66547ef9f92c6564a5d5241.jpg",
     "https://www.southernliving.com/thmb/HSEUOjJVCl4kIRJRMAZ1eblQlWE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Millionaire_Spaghetti_019-34e9c04b1ae8405088f53450a048e413.jpg",
-    "https://hips.hearstapps.com/hmg-prod/images/crepes-index-64347419e3c7a.jpg?crop=0.888888888888889xw:1xh;center,top&resize=1200:*", 
-    "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505", 
+    "https://hips.hearstapps.com/hmg-prod/images/crepes-index-64347419e3c7a.jpg?crop=0.888888888888889xw:1xh;center,top&resize=1200:*",
+    "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505",
     "https://www.simplyrecipes.com/thmb/KRw_r32s4gQeOX-d07NWY1OlOFk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Homemade-Pizza-Dough-Lead-Shot-1c-c2b1885d27d4481c9cfe6f6286a64342.jpg",
     "https://www.eatingwell.com/thmb/Kx41aHMgb9iAY41IM5eSrQi-3O8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chickpea-curry-chhole-1x1-41ea4d53c7df4fddabd83caa5b57718e.jpg",
     "https://realfood.tesco.com/media/images/1400x919-HuntersChicken-1cddb648-ead8-4325-8e60-f80d1ca4ede3-0-1400x919.jpg"
 ]
+
+5.times do
+  jenny_recipe = Recipe.create!(
+    name: Faker::Food.dish,
+    description: Faker::Food.description,
+    user: jenny_test,
+    is_shareable: true
+  )
+
+  # Attach an image to the recipe
+  file = URI.open(recipe_image_urls.sample)
+  jenny_recipe.photo.attach(io: file, filename: 'recipe.jpg', content_type: 'image/jpg')
+
+
+  rand(1..5).times do
+      Ingredient.create!(
+      recipe: jenny_recipe,
+      name: Faker::Food.ingredient,
+      quantity: "#{rand(1..5)} #{Faker::Food.measurement}"
+      )
+  end
+
+  rand(1..5).times do |i|
+      Instruction.create!(
+        recipe: jenny_recipe,
+        step_number: i + 1,
+        description: Faker::Lorem.sentence(word_count: 5)
+      )
+  end
+
+  rand(1..5).times do
+    Like.create!(
+      user: User.all.sample,
+      recipe: jenny_recipe
+    )
+  end
+
+  rand(1..5).times do
+    Bookmark.create!(
+      user: User.all.sample,
+      recipe: jenny_recipe
+    )
+  end
+
+  rand(1..5).times do
+    Comment.create!(
+      user: User.all.sample,
+      recipe: jenny_recipe,
+      text: Faker::Lorem.sentence(word_count: 10)
+    )
+  end
+end
+
+puts 'recipes created for jenny'
+
+5.times do
+  timmy_recipe = Recipe.create!(
+    name: Faker::Food.dish,
+    description: Faker::Food.description,
+    user: timmy_test,
+    is_shareable: true
+  )
+
+  # Attach an image to the recipe
+  file = URI.open(recipe_image_urls.sample)
+  timmy_recipe.photo.attach(io: file, filename: 'recipe.jpg', content_type: 'image/jpg')
+
+
+  rand(1..5).times do
+      Ingredient.create!(
+      recipe: timmy_recipe,
+      name: Faker::Food.ingredient,
+      quantity: "#{rand(1..5)} #{Faker::Food.measurement}"
+      )
+  end
+
+  rand(1..5).times do |i|
+      Instruction.create!(
+        recipe: timmy_recipe,
+        step_number: i + 1,
+        description: Faker::Lorem.sentence(word_count: 5)
+      )
+  end
+
+  rand(1..5).times do
+    Like.create!(
+      user: User.all.sample,
+      recipe: timmy_recipe
+    )
+  end
+
+  rand(1..5).times do
+    Bookmark.create!(
+      user: User.all.sample,
+      recipe: timmy_recipe
+    )
+  end
+
+  rand(1..5).times do
+    Comment.create!(
+      user: User.all.sample,
+      recipe: timmy_recipe,
+      text: Faker::Lorem.sentence(word_count: 10)
+    )
+  end
+end
+
+puts 'timmy recipes created'
 
 20.times do
     recipe = Recipe.create!(
@@ -65,12 +203,12 @@ recipe_image_urls= [
       user: User.all.sample,
       is_shareable: true
     )
-  
+
     # Attach an image to the recipe
     file = URI.open(recipe_image_urls.sample)
     recipe.photo.attach(io: file, filename: 'recipe.jpg', content_type: 'image/jpg')
 
-        
+
     rand(1..5).times do
         Ingredient.create!(
         recipe: recipe,
@@ -109,6 +247,6 @@ recipe_image_urls= [
         )
       end
 
-  end
+end
 
   puts '20 recipes created'

@@ -44,7 +44,7 @@ main {
 
 .modal {
   position: absolute;
-  top: 40px; /* Adjust based on your button's position */
+  top: 40px;
   left: 50%;
   transform: translateX(-50%) scale(0.01);
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -58,6 +58,6 @@ main {
 }
 
 .w-64 {
-  width: 100%; 
-  transition: width 0.7s ease-in-out; 
+  width: 100%;
+  transition: width 0.7s ease-in-out;
 }

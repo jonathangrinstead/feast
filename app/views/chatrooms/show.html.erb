@@ -7,7 +7,7 @@
                 <i class="fa-solid fa-arrow-left fa-lg" style="color: #000000;"></i>
             <% end %>
         </div>
-        
+
         <div class="mb-8">
             <% chatting_to = @chatroom.users.reject { |user| user == current_user }.first %>
             <div class="card bg-base-100 shadow-xl">
@@ -20,8 +20,8 @@
 
     </div>
 
-    
-    <div class="flex flex-col justify-between h-dvh" data-controller="chatroom-subscription" 
+
+    <div class="flex flex-col bottom-0 fixed mb-6" data-controller="chatroom-subscription"
     data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
         <div class="messages overflow-auto" data-chatroom-subscription-target="messages">
             <% @chatroom.messages.each do |message| %>

@@ -27,6 +27,7 @@
             data-like-like-id-value="<%= like_id %>"
             data-like-liked-value="<%= current_user_likes_recipe?(@recipe) %>"
             data-action="click->like#toggleLike" class="btn btn-outline btn-primary w-12 h-12">
+            <i class="fa-regular fa-heart fa-lg" style="color: #000000;"></i>
           </button>
         </div>
       </div>
@@ -40,7 +41,7 @@
         <h4><%= @recipe.likes.count %><i class="fa-regular fa-heart fa-lg ml-4" style="color: #000000;"></i></h4>
         <h4><%= @recipe.bookmarks.count %><i class="fa-regular fa-bookmark fa-lg ml-4" style="color: #000000;"></i></h4>
       </div>
-    </div> 
+    </div>
   </div>
 
   <div class="flex justify-center mt-4">

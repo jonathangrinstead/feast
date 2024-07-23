@@ -1,9 +1,9 @@
 class ChatroomsController < ApplicationController
     before_action :authenticate_user!
-    
+
     def index
         @chatrooms = current_user.chatrooms
-    end 
+    end
 
     def show
         @chatroom = Chatroom.find(params[:id])
@@ -13,7 +13,7 @@ class ChatroomsController < ApplicationController
     def new
         @mutuals = current_user.followers & current_user.following
         @chatrooms = current_user.chatrooms
-    end 
+    end
 
     def create
         @chatroom = Chatroom.new
